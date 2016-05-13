@@ -49,7 +49,7 @@ class Netbanx(BasePaymentProcessor):
     http://apps.cybersource.com/library/documentation/dev_guides/Secure_Acceptance_WM/Secure_Acceptance_WM.pdf.
     """
 
-    NAME = 'cybersource'
+    NAME = 'netbanx'
 
     def __init__(self):
         """
@@ -153,6 +153,9 @@ class Netbanx(BasePaymentProcessor):
         '''
 
         # Netbanx object creation
+        ## Move this to the right config file
+        environmenet = "TEST"
+        optimal_obj = OptimalApiClient(self.access_key, self.secret_key, environment, self.profile_id)
         # 'payment_page_url' seems the only important parameter, as seen with the paypal processor
         ip = request.META.get('REMOTE_ADDR')
         order_obj = Order(None)

@@ -27,7 +27,6 @@ from ecommerce.extensions.payment.transport import RequestsTransport
 from PythonNetBanxSDK.OptimalApiClient import OptimalApiClient
 from PythonNetBanxSDK.HostedPayment.Order import Order
 from PythonNetBanxSDK.CustomerVault.Profile import Profile
-from RandomTokenGenerator import RandomTokenGenerator
 
 logger = logging.getLogger(__name__)
 

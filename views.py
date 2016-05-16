@@ -82,13 +82,13 @@ class NetbanxNotifyView(EdxOrderPlacementMixin, View):
         except (ValueError, ObjectDoesNotExist):
             return None
 
-    def post(self, request):
+    def get(self, request):
         """Process a Netbanx merchant notification and place an order for paid products as appropriate."""
 
         # Note (CCB): Orders should not be created until the payment processor has validated the response's signature.
         # This validation is performed in the handle_payment method. After that method succeeds, the response can be
         # safely assumed to have originated from Netbanx.
-        response = request.POST.dict()
+        response = request.GET.dict()
         print("============= Netbanx post =================")
         pprint(response)
         print("============================================")

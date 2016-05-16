@@ -50,10 +50,10 @@ class NetbanxNotifyView(EdxOrderPlacementMixin, View):
         return super(NetbanxNotifyView, self).dispatch(request, *args, **kwargs)
 
     def _get_billing_address(self, response):
+        print("============= Netbanx get_billing =================")
+        pprint(response)
+        print("===================================================")
         return BillingAddress(
-            print("============= Netbanx get_billing =================")
-            pprint(response)
-            print("===================================================")
             first_name=response['req_bill_to_forename'],
             last_name=response['req_bill_to_surname'],
             line1=response['req_bill_to_address_line1'],

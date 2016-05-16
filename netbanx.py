@@ -163,9 +163,16 @@ class Netbanx(BasePaymentProcessor):
         # Redirection in case of success
         redirect = [{
           "rel":'on_success',
-          'uri':'{}?orderNum={}'.format(self.receipt_page_url, basket.order_number)
+          'returnKeys':  [basket.order_number],
+          'uri':  urljoin(get_ecommerce_url(), reverse('netbanx_notify'))
         }]
         order_obj.redirect(redirect)
+        callback_def = [{
+          'format': 'json',
+          'uri': urljoin(get_ecommerce_url(), reverse('netbanx_notify')),
+          'retries': 1,
+        }]
+        order_obj.callback(callback_def)
         response_object = optimal_obj.hosted_payment_service_handler().create_order(order_obj)
         
         parameters['payment_page_url'] = response_object.link[0].uri

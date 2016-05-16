@@ -22,6 +22,8 @@ from ecommerce.extensions.payment.helpers import sign
 from ecommerce.extensions.payment.processors import BasePaymentProcessor
 from ecommerce.extensions.payment.transport import RequestsTransport
 
+from urlparse import urljoin
+from django.core.urlresolvers import reverse
 
 # Netbanx related import
 from PythonNetBanxSDK.OptimalApiClient import OptimalApiClient
